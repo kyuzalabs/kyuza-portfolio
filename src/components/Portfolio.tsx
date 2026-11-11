@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Reveal from './Reveal'
+import MaskText from './MaskText'
 import { projects, certificates, techstack } from '../data/projects'
 import type { Project } from '../types'
 
@@ -9,7 +10,7 @@ type Tab = (typeof tabs)[number]
 
 function ProjectCard({ p, onOpen }: { p: Project; onOpen: (p: Project) => void }) {
   return (
-    <article className="flex flex-col overflow-hidden rounded-3xl border border-line bg-card">
+    <article className="flex flex-col overflow-hidden rounded-3xl border border-line bg-card transition-transform duration-300 hover:-translate-y-1.5 hover:border-ink3/40">
       <div className="flex h-40 items-center justify-center" style={{ background: p.gradient }}>
         <span className="text-6xl opacity-90 grayscale">{p.emoji}</span>
       </div>
@@ -106,14 +107,17 @@ export default function Portfolio() {
   return (
     <section id="portfolio" className="px-6 py-24 md:px-12 lg:px-20 lg:py-32">
       <div className="mx-auto max-w-6xl">
-        <Reveal className="text-center">
-          <h2 className="font-sans text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-tight text-ink">
-            Portfolio Showcase
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl font-sans text-lg text-ink2">
-            Explore my journey through projects, certifications, and technical expertise.
-          </p>
-        </Reveal>
+        <div className="text-center">
+          <MaskText
+            className="font-sans text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-tight text-ink"
+            lines={[<span>Portfolio Showcase</span>]}
+          />
+          <Reveal className="mt-4">
+            <p className="mx-auto max-w-xl font-sans text-lg text-ink2">
+              Explore my journey through projects, certifications, and technical expertise.
+            </p>
+          </Reveal>
+        </div>
 
         <Reveal delay={0.05} className="mt-10 flex justify-center">
           <div className="flex w-full max-w-xl rounded-full border border-line bg-panel p-1.5">

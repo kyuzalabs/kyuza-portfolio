@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useInView } from 'framer-motion'
 import Reveal from './Reveal'
+import MaskText from './MaskText'
 import { profile } from '../data/profile'
 import { useCountUp } from '../hooks/useCountUp'
 
@@ -28,15 +29,13 @@ export default function About() {
           <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink3">{profile.about.label}</p>
         </Reveal>
 
-        <Reveal delay={0.05}>
-          <h2 className="mt-6 font-sans text-[clamp(2.5rem,7vw,5.5rem)] font-extrabold leading-[0.9] tracking-tight">
-            {display.map((w, i) => (
-              <span key={i} className={`block ${i % 2 === 0 ? 'text-ink' : 'text-ink2'}`}>
-                {w}
-              </span>
-            ))}
-          </h2>
-        </Reveal>
+        <MaskText
+          className="mt-6 block font-sans text-[clamp(2.5rem,7vw,5.5rem)] font-extrabold leading-[0.9] tracking-tight"
+          stagger={0.1}
+          lines={display.map((w, i) => (
+            <span className={i % 2 === 0 ? 'text-ink' : 'text-ink2'}>{w}</span>
+          ))}
+        />
 
         <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-16">
           <Reveal>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
 import Reveal from './Reveal'
+import MaskText from './MaskText'
 import { profile } from '../data/profile'
 
 interface Comment {
@@ -69,12 +70,15 @@ export default function Contact() {
   return (
     <section id="contact" className="px-6 py-24 md:px-12 lg:px-20 lg:py-32">
       <div className="mx-auto max-w-6xl">
-        <Reveal className="text-center">
-          <h2 className="font-sans text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-tight text-ink">
-            {profile.contact.title}
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl font-sans text-lg text-ink2">{profile.contact.lead}</p>
-        </Reveal>
+        <div className="text-center">
+          <MaskText
+            className="font-sans text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-tight text-ink"
+            lines={[<span>{profile.contact.title}</span>]}
+          />
+          <Reveal className="mt-4">
+            <p className="mx-auto max-w-xl font-sans text-lg text-ink2">{profile.contact.lead}</p>
+          </Reveal>
+        </div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
